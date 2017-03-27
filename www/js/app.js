@@ -22,7 +22,7 @@ angular.module('ToDo', ['ionic'])
 .controller('ToDoCtrl', function($scope, $ionicModal){
   $scope.tasks = [
     {title:'OLcdsLo',description:'Olfa', done:false},
-    {title:'asdaw',description:'Olfqweqwea', done:false},
+    {title:'asdaw',description:'Olfqweqwea', done:true},
     {title:'OLsOLo',description:'Olwqewqefa', done:false},
     {title:'OLwewaeOLo',description:'asdwq', done:false},
   ];
