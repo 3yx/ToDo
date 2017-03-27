@@ -33,13 +33,35 @@ angular.module('ToDo', ['ionic'])
     animation:'slide-in-up'
   });
 
-  $scope.openTask = function(){
+  $scope.currenctTaskId = -1;
+
+  $scope.addTask = function(){
     $scope.taskModal.show();
+    $scope.activeTask = {
+      title:'',
+      description:'',
+      done:false
+    }
+    $scope.currenctTaskId = -1;
   }
 
   $scope.closeTask = function (){
     $scope.taskModal.hide();
   }
 
+  $scope.openTask = function (id){
+    var task = $scope.tasks[id];
+    $scope.currenctTaskId = id;
+    $scope.activeTask = {
+      title:task.title,
+      description:task.description,
+      done:task.done
+    }
+    $scope.taskModal.show();
+  }
+
+  $scope.deleteItem = function (id){
+    $scope.tasks.splice(id, 1);
+  }
 
 })
