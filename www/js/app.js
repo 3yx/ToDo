@@ -19,13 +19,20 @@ angular.module('ToDo', ['ionic'])
 })
 
 
-.controller('ToDoCtrl', function($scope, $ionicModal){
-  $scope.tasks = [
-    {title:'OLcdsLo',description:'Olfa', done:false},
-    {title:'asdaw',description:'Olfqweqwea', done:true},
-    {title:'OLsOLo',description:'Olwqewqefa', done:false},
-    {title:'OLwewaeOLo',description:'asdwq', done:false},
-  ];
+.controller('ToDoCtrl', function($scope, $ionicModal, $timeout){
+
+  if (!angular.isUndefined(window.localStorage['tasks'])) {
+    $scope.tasks = JSON.parse(window.localStorage['tasks']);
+  } else {
+    $scope.tasks = [
+      {title:'OLcdsLo',description:'Olfa', done:false},
+      {title:'asdaw',description:'Olfqweqwea', done:true},
+      {title:'OLsOLo',description:'Olwqewqefa', done:false},
+      {title:'OLwewaeOLo',description:'asdwq', done:false},
+    ];
+  }
+
+
   $ionicModal.fromTemplateUrl('views/task.html', function(modal){
    $scope.taskModal = modal;
   },{
@@ -62,6 +69,36 @@ angular.module('ToDo', ['ionic'])
 
   $scope.deleteItem = function (id){
     $scope.tasks.splice(id, 1);
+    saveItems();
+  }
+
+  $scope.submitTask = function (task){
+    if($scope.currenctTaskId == -1){
+      $scope.tasks.push({
+        title:task.title,
+        description:task.description,
+        done:task.done
+      });
+    } else {
+      var id = $scope.currenctTaskId;
+      $scope.tasks[id].title = task.title;
+      $scope.tasks[id].description = task.description;
+      $scope.tasks[id].done = task.done;
+    }
+
+    saveItems();
+
+    $scope.taskModal.hide();
+  }
+
+  $scope.saveTasks = function () {
+    $timeout(function(){
+      saveItems();
+    });
+  }
+
+  function saveItems() {
+    window.localStorage['tasks'] = angular.toJson($scope.tasks)
   }
 
 })

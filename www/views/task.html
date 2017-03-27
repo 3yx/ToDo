@@ -7,7 +7,7 @@
   </ion-header-bar>
 
   <ion-content>
-    <form>
+    <form ng-submit="submitTask(activeTask)">
       <div class="list">
         <label class="item item-input">
         <input type="text" placeholder="What u need..." ng-model="activeTask.title">
@@ -16,11 +16,27 @@
           <textarea placeholder="Description" ng-model="activeTask.description">
           </textarea>
         </label>
+        <ul class="list">
+          <li class="item item-toggle">
+          <span class="toggle-item">
+            Done!
+          </span>
+            <label class="toggle toggle-positive">
+              <input type="checkbox" ng-model="activeTask.done">
+              <div class="track">
+                <div class="handle">
+
+                </div>
+              </div>
+            </label>
+          </li>
+        </ul>
         <div class="padding">
           <button type="submit" class="button button-block button-positive" ng-show="currenctTaskId == -1">Add</button>
           <button type="submit" class="button button-block button-positive" ng-show="currenctTaskId > -1">Save</button>
         </div>
       </div>
+
     </form>
 
   </ion-content>
