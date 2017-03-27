@@ -26,4 +26,20 @@ angular.module('ToDo', ['ionic'])
     {title:'OLsOLo',description:'Olwqewqefa', done:false},
     {title:'OLwewaeOLo',description:'asdwq', done:false},
   ];
+  $ionicModal.fromTemplateUrl('views/task.html', function(modal){
+   $scope.taskModal = modal;
+  },{
+    scope:$scope,
+    animation:'slide-in-up'
+  });
+
+  $scope.openTask = function(){
+    $scope.taskModal.show();
+  }
+
+  $scope.closeTask = function (){
+    $scope.taskModal.hide();
+  }
+
+
 })
