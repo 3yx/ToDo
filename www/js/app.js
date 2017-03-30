@@ -1,3 +1,4 @@
+
 angular.module('ToDo', ['ionic'])
 
 .run(function($ionicPlatform) {
@@ -18,17 +19,13 @@ angular.module('ToDo', ['ionic'])
   });
 })
 
-
 .controller('ToDoCtrl', function($scope, $ionicModal, $timeout){
 
   if (!angular.isUndefined(window.localStorage['tasks'])) {
     $scope.tasks = JSON.parse(window.localStorage['tasks']);
   } else {
     $scope.tasks = [
-      {title:'OLcdsLo',description:'Olfa', done:false},
-      {title:'asdaw',description:'Olfqweqwea', done:true},
-      {title:'OLsOLo',description:'Olwqewqefa', done:false},
-      {title:'OLwewaeOLo',description:'asdwq', done:false},
+      {title:'Welcome!',description:'', done:false},
     ];
   }
 

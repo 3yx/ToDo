@@ -3,17 +3,17 @@
   <ion-header-bar class="bar-secondary">
     <h1 class="title" ng-show="currenctTaskId == -1">New Task</h1>
     <h1 class="title" ng-show="currenctTaskId > -1">Edit Task</h1>
-    <button class="button button-clear button-positive" ng-click="closeTask()">Cancel</button>
+    <button class="button button-clear button-positive " ng-click="closeTask()">Cancel</button>
   </ion-header-bar>
 
   <ion-content>
     <form ng-submit="submitTask(activeTask)">
       <div class="list">
-        <label class="item item-input">
-        <input type="text" placeholder="What u need..." ng-model="activeTask.title">
+        <label class="item item-input item-text-wrap">
+        <input type="text"  placeholder="What u need..."  ng-model="activeTask.title">
       </label>
         <label class="item item-input">
-          <textarea placeholder="Description" ng-model="activeTask.description">
+          <textarea autosize class="my-textarea" placeholder="Description" ng-model="activeTask.description" >
           </textarea>
         </label>
         <ul class="list">
