@@ -33,20 +33,21 @@
     <script src="js/app.js"></script>
   </head>
   <body ng-app="ToDo" ng-controller="ToDoCtrl">
-
     <ion-pane>
       <ion-header-bar class="bar-positive">
+        <button class="button icon ion-information-circled button-clear" ng-click="help()"></button>
         <h1 class="title">To Do</h1>
-        <button class="button icon ion-plus-round button-clear add" ng-click="addTask()"></button>
+        <button class="button icon ion-plus-circled button-clear add" ng-click="addTask()"></button>
       </ion-header-bar>
       <ion-content>
         <ion-list>
-          <ion-item ng-repeat="task in tasks" class="item item-text-wrap item-checkbox item-icon-right animated" ng-class="{'checked' : task.done}">
-            <label class="checkbox">
-              <input type="checkbox" ng-model="task.done" ng-click="saveTasks()">
-            </label>
-            <span class="title" ng-click="openTask($index)">{{task.title}}</span>
-            <i class="icon ion-close-round deleteItem" ng-click="deleteItem($index)"></i>
+          <ion-item on-hold="openTask($index)" on-swipe-right="deleteItem($index)" ng-repeat="task in tasks" class="item item-text-wrap item-checkbox item-icon-right animated" ng-class="{'checked' : task.done}">
+           <span class="title">
+              <label>
+                <input class="hidden" type="checkbox"  ng-model="task.done" ng-click="saveTasks()">
+                  {{task.title}}
+              </label>
+            </span>
           </ion-item>
         </ion-list>
       </ion-content>

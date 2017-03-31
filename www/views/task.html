@@ -7,13 +7,13 @@
   </ion-header-bar>
 
   <ion-content>
-    <form ng-submit="submitTask(activeTask)">
+    <form name="taskForm" ng-submit="submitTask(activeTask)">
       <div class="list">
-        <label class="item item-input item-text-wrap">
-        <input type="text"  placeholder="What u need..."  ng-model="activeTask.title">
+        <label class="item item-input">
+        <input type="text" name="taskName" placeholder="Task . . ." ng-model="activeTask.title" required>
       </label>
         <label class="item item-input">
-          <textarea autosize class="my-textarea" placeholder="Description" ng-model="activeTask.description" >
+          <textarea rows="6" placeholder="Description . . ." ng-model="activeTask.description" >
           </textarea>
         </label>
         <ul class="list">
@@ -32,8 +32,8 @@
           </li>
         </ul>
         <div class="padding">
-          <button type="submit" class="button button-block button-positive" ng-show="currenctTaskId == -1">Add</button>
-          <button type="submit" class="button button-block button-positive" ng-show="currenctTaskId > -1">Save</button>
+          <button type="submit" class="button button-block button-positive" ng-show="currenctTaskId == -1" ng-click="taskForm.$invalid && preview()">Add</button>
+          <button type="submit" class="button button-block button-positive" ng-show="currenctTaskId > -1" ng-click="taskForm.$invalid && preview()">Save</button>
         </div>
       </div>
 

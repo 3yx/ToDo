@@ -29,7 +29,6 @@ angular.module('ToDo', ['ionic'])
     ];
   }
 
-
   $ionicModal.fromTemplateUrl('views/task.html', function(modal){
    $scope.taskModal = modal;
   },{
@@ -37,7 +36,18 @@ angular.module('ToDo', ['ionic'])
     animation:'slide-in-up'
   });
 
+  $ionicModal.fromTemplateUrl('views/help.html', function(modal){
+    $scope.helpModal = modal;
+  },{
+    scope:$scope,
+    animation:'slide-in-up'
+  });
+
   $scope.currenctTaskId = -1;
+
+  $scope.help = function (){
+    $scope.helpModal.show();
+  }
 
   $scope.addTask = function(){
     $scope.taskModal.show();
@@ -51,6 +61,7 @@ angular.module('ToDo', ['ionic'])
 
   $scope.closeTask = function (){
     $scope.taskModal.hide();
+    $scope.helpModal.hide();
   }
 
   $scope.openTask = function (id){
@@ -67,6 +78,10 @@ angular.module('ToDo', ['ionic'])
   $scope.deleteItem = function (id){
     $scope.tasks.splice(id, 1);
     saveItems();
+  }
+
+  $scope.preview = function (){
+    alert('Enter task');
   }
 
   $scope.submitTask = function (task){
